@@ -4,7 +4,7 @@
   "description": "React social media application",
   "main": "index.js",
   "scripts": {
-    "chal": "nodemon index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
