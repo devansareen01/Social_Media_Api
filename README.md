@@ -17,7 +17,7 @@ This API provides basic functionalities for a social media platform, allowing us
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/your-username/social-media-api](https://github.com/devansareen01/Social_Media_Api).git
+    git clone https://github.com/devansareen01/Social_Media_Api.git
     cd social-media-api
     ```
 
