@@ -40,7 +40,7 @@ This API provides basic functionalities for a social media platform, allowing us
 4. **Run the application:**
 
     ```bash
-    npm start
+    nodemon start
     ```
 
     The API will be running at http://localhost:3000.
