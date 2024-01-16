@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000
+const port = 8000
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
@@ -11,7 +11,7 @@ const postRouter = require('./routes/posts');
 
 dotenv.config();//for congfiguring env file
 
-mongoose.connect('mongodb://127.0.0.1/Social')
+mongoose.connect(process.env.MONGO_URI)
     .then(() => { console.log("Database is connected") })
     .catch((err) => { console.log('could not connected to mongodb', err) })
 
