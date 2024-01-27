@@ -18,7 +18,7 @@ This API provides basic functionalities for a social media platform, allowing us
 
     ```bash
     git clone https://github.com/devansareen01/Social_Media_Api.git
-    cd social-media-api
+    cd Social_Media_Api
     ```
 
 2. **Install dependencies:**
@@ -43,7 +43,7 @@ This API provides basic functionalities for a social media platform, allowing us
     nodemon start
     ```
 
-    The API will be running at http://localhost:3000.
+    The API will be running at http://localhost:8000.
 
 ## Endpoints
 
