@@ -1,31 +1,30 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = 8000
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const userRouter = require('./routes/users');
-const authRouter = require('./routes/auth');
-const postRouter = require('./routes/posts');
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const userRoute = require("./routes/user");
+const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
+const connectDatabase = require("./config/connectDatabase");
+dotenv.config();
 
-dotenv.config();//for congfiguring env file
+connectDatabase();
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => { console.log("Database is connected") })
-    .catch((err) => { console.log('could not connected to mongodb', err) })
-
-
-// middlewares
+// MiddleWare
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use('/api/users', userRouter);
+app.get("/", (req, res) => {
+    res.send("Welcome To Homepage");
+})
 
-app.use('/api/auth', authRouter);
-app.use('/api/posts', postRouter);
+app.use("/api/user", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
 
-app.listen(port, () => {
-    console.log(`Backend Server is running on port  ${port}`);
+app.listen(process.env.PORT, () => {
+    console.log("Backend Server is running now");
 })

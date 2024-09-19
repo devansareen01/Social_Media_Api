@@ -1,68 +1,71 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require("sequelize");
+const sq = require("../config/dbconnection");
 
-
-const UserSchema = new mongoose.Schema({
+const User = sq.define("User", {
     username: {
-        type: String,
-        require: true,
-        min: 3,// min character
-        max: 20,// max character
-        unique: true
+        type: DataTypes.STRING(20), // Set maximum length of 20 characters
+        allowNull: false, // Ensure it's not null
+        unique: true, // Ensure it's unique
+        validate: {
+            len: [2, 20] // Minimum length of 2 and maximum length of 20 characters
+        }
     },
     email: {
-        type: String,
-        require: true,
-        max: 50,// max character
-        unique: true
+        type: DataTypes.STRING(50), // Set maximum length of 50 characters
+        allowNull: false, // Ensure it's not null
+        unique: true, // Ensure it's unique
+        validate: {
+            isEmail: true // Ensure it is a valid email format
+        }
     },
     password: {
-        type: String,
-        require: true,
-        min: 6
+        type: DataTypes.STRING, // Password length is not limited here
+        allowNull: false, // Ensure it's not null
+        validate: {
+            len: [6] // Minimum length of 6 characters
+        }
     },
     profilePicture: {
-        type: String,
-        default: ""
+        type: DataTypes.STRING,
+        defaultValue: "" // Default value of an empty string
     },
     coverPicture: {
-        type: String,
-        default: ""
+        type: DataTypes.STRING,
+        defaultValue: "" // Default value of an empty string
     },
     followers: {
-        type: Array,
-        defualt: []
+        type: DataTypes.ARRAY(DataTypes.STRING), // Array of strings
+        defaultValue: [] // Default value of an empty array
     },
     followings: {
-        type: Array,
-        defualt: []
+        type: DataTypes.ARRAY(DataTypes.STRING), // Array of strings
+        defaultValue: [] // Default value of an empty array
     },
     isAdmin: {
-        type: Boolean,
-        defualt: false
-
+        type: DataTypes.BOOLEAN, // Boolean type for isAdmin
+        defaultValue: false // Default value of false
     },
     desc: {
-        type: String,
-        max: 50
+        type: DataTypes.STRING(50), // Set maximum length of 50 characters
     },
     city: {
-        type: String,
-        max: 50
+        type: DataTypes.STRING(50), // Set maximum length of 50 characters
     },
     from: {
-        type: String,
-        max: 50
+        type: DataTypes.STRING(50), // Set maximum length of 50 characters
     },
     relationship: {
-        type: Number,
-        enum: [1, 2, 3]
+        type: DataTypes.INTEGER, // Integer type for relationship
+        validate: {
+            isIn: [[1, 2, 3]] // Enum-like validation for specific values
+        }
     }
+}, {
+    timestamps: true // Add createdAt and updatedAt timestamps
+});
 
+User.sync().then(() => {
+    console.log("User model synced");
+});
 
-},
-    {
-        timestamps: true
-    });
-
-
-module.exports = mongoose.model("User", UserSchema)
+module.exports = User;

@@ -6,7 +6,7 @@ This API provides basic functionalities for a social media platform, allowing us
 
 - Node.js
 - Express.js
-- MongoDB (using Mongoose)
+- PostgreSQL (using Sequelize)
 - Bcrypt for password encryption
 - Helmet for securing HTTP headers
 - Morgan for HTTP request logging
@@ -17,8 +17,8 @@ This API provides basic functionalities for a social media platform, allowing us
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/devansareen01/Social_Media_Api.git
-    cd Social_Media_Api
+    git clone https://github.com/Mukeshkumar1611/Social_Media_API.git
+    cd Social_Media_API
     ```
 
 2. **Install dependencies:**
@@ -32,10 +32,15 @@ This API provides basic functionalities for a social media platform, allowing us
     Create a `.env` file in the root directory and add the following:
 
     ```env
-    MONGO_URI=mongodb://127.0.0.1/Social
+    DB_USER=your-database-username
+    DB_HOST=localhost
+    DB_NAME=your-database-name
+    DB_PASSWORD=your-database-password
+    DB_PORT=5432
+    PORT=7000
     ```
 
-    Replace `mongodb://127.0.0.1/Social` with your MongoDB connection string.
+    Replace `your-database-username`, `your-database-name`, and `your-database-password` with your PostgreSQL credentials.
 
 4. **Run the application:**
 
@@ -43,7 +48,7 @@ This API provides basic functionalities for a social media platform, allowing us
     nodemon start
     ```
 
-    The API will be running at http://localhost:8000.
+    The API will be running at http://localhost:7000.
 
 ## Endpoints
 
